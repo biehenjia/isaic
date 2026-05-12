@@ -1,0 +1,88 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:     #0d1117;
+  --fg:     #b3e6a8;
+  --dim:    #4a5260;
+  --accent: #79c0ff;
+  --warn:   #f0883e;
+  --err:    #ff7b72;
+  --font:   'Cascadia Code', 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  --size:   14px;
+  --line:   1.5;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: var(--size);
+  line-height: var(--line);
+  padding: 2rem;
+}
+
+pre {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  white-space: pre;
+  margin: 0;
+}
+
+/* ── .isaic-canvas layout ─────────────────────────────── */
+
+.isaic-canvas {
+  position: relative;
+}
+
+.isaic-component {
+  position: absolute;
+}
+
+/* ── links inside ASCII pre blocks ───────────────────── */
+
+pre a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+pre a:hover {
+  text-decoration: underline;
+}
+
+/* ── html type block ──────────────────────────────────── */
+
+.isaic-html-block {
+  font-family: var(--font);
+  font-size: var(--size);
+  line-height: var(--line);
+}
+
+/* ── standalone web component display ────────────────── */
+
+isaic-box,
+isaic-tree,
+isaic-divider {
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+isaic-badge {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
+/* ── color utility classes ────────────────────────────── */
+
+.dim    { color: var(--dim); }
+.bold   { font-weight: 700; }
+.green  { color: var(--fg); }
+.blue   { color: var(--accent); }
+.warn   { color: var(--warn); }
+.red    { color: var(--err); }
+.blink  { animation: blink 1s step-end infinite; }
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}

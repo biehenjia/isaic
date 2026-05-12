@@ -1,0 +1,48 @@
+
+
+config
+  charStyle  rounded
+  font       'Cascadia Code', 'JetBrains Mono', 'Fira Code', ui-monospace, monospace
+  colors
+    bg      #0d1117
+    fg      #b3e6a8
+    dim     #4a5260
+    accent  #79c0ff
+    warn    #f0883e
+    err     #ff7b72
+
+canvas 80 x 27
+
+[header] box  at 0,0  size 80  title=isaic  motion=boot
+  web component library for ascii-aesthetic personal sites
+  vanilla js  •  no build step  •  no dependencies
+
+[about] box  at 0,5  size 37  title=whoami  motion=boot
+  name:    I am a poopoo
+  role:    software engineer
+  focus:   systems + web
+  status:  building cool things
+
+[contact] box  at 40,5  size 39  title=contact  motion=boot
+  github:  [github.com/you](https://github.com/you)
+  email:   [you@example.com](mailto:you@example.com)
+  site:    [yoursite.com](https://yoursite.com)
+
+[nav] tree  at 0,13  size 22  label=projects  motion=boot
+  isaic
+    core
+    components
+  macvoice
+  blog
+    posts
+    drafts
+
+[stack] box  at 24,13  size 55  title=stack  motion=boot
+  languages:  js, python, rust, go
+  editors:    neovim, zed
+  tools:      docker, nginx, cloudflare
+
+[sep] divider  at 0,24  size 80  motion=boot
+
+[footer] text  at 0,25  size 80  motion=boot  delay=100
+  [v0.1]  built with isaic  •  2026
