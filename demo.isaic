@@ -24,7 +24,7 @@ canvas 80 x 27
   status:  building cool things
 
 [contact] box  at 40,5  size 39  title=contact  motion=boot
-  github:  [github.com/you](https://github.com/you)
+  github:  [github.com/you](https://github.com)
   email:   [you@example.com](mailto:you@example.com)
   site:    [yoursite.com](https://yoursite.com)
 

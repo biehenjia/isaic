@@ -13,17 +13,14 @@ export function animate(el, motion, attrs = {}) {
   }
 }
 
-// sequential boot reveal; delay= adds a pause after each item finishes
 export async function runBootSequence(items) {
   if (REDUCED) {
     items.forEach(({ el }) => show(el))
     return
   }
-  for (const { el, delay, speed } of items) {
-    if (delay) await sleep(delay)
-    show(el)
-    await typewriter(el, speed)
-  }
+  await Promise.all(items.map(({ el, delay, speed }) =>
+    sleep(delay).then(() => { show(el); return typewriter(el, speed) })
+  ))
 }
 
 // ── animation implementations ────────────────────────────────────────────────

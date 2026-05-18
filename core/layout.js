@@ -30,7 +30,7 @@ export function mount(parsed, container) {
 
     const motion = comp.attrs.motion
     const delay  = parseInt(comp.attrs.delay ?? '0') || 0
-    const speed  = parseInt(comp.attrs.speed ?? '3') || 3
+    const speed  = parseInt(comp.attrs.speed ?? globalConfig.speed) || 3
 
     if (motion === 'boot') {
       el.style.visibility = 'hidden'
@@ -47,6 +47,7 @@ export function mount(parsed, container) {
 
 function applyConfig(cfg) {
   if (cfg.charStyle) globalConfig.charStyle = cfg.charStyle
+  if (cfg.speed)    globalConfig.speed = parseInt(cfg.speed) || 3
 
   const root = document.documentElement
   if (cfg.theme)  applyTheme(cfg.theme, root)
