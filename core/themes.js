@@ -11,4 +11,7 @@ export const themes = {
   light: {
     bg: '#fdf6e3', fg: '#657b83', dim: '#93a1a1', accent: '#268bd2', warn: '#cb4b16', err: '#dc322f',
   },
+  pastel: {
+    bg: '#1a1a2e', fg: '#b8f0b8', dim: '#5a7a5a', accent: '#f0a0c0', warn: '#f0c080', err: '#f07080',
+  },
 }

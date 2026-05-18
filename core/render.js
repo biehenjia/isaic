@@ -1,12 +1,14 @@
+import { textWidth } from './measure.js'
+
 const CHARS = {
   unicode: { tl: '┌', tr: '┐', bl: '└', br: '┘', h: '─', v: '│' },
-  ascii:   { tl: '+', tr: '+', bl: '+', br: '+', h: '-', v: '|' },
+  ascii: { tl: '+', tr: '+', bl: '+', br: '+', h: '-', v: '|' },
   rounded: { tl: '╭', tr: '╮', bl: '╰', br: '╯', h: '─', v: '│' },
 }
 
 const TREE_CHARS = {
   unicode: { branch: '├── ', last: '└── ', cont: '│   ', empty: '    ' },
-  ascii:   { branch: '+-- ', last: '`-- ', cont: '|   ', empty: '    ' },
+  ascii: { branch: '+-- ', last: '`-- ', cont: '|   ', empty: '    ' },
   rounded: { branch: '├── ', last: '╰── ', cont: '│   ', empty: '    ' },
 }
 
@@ -29,17 +31,17 @@ export function processLine(str) {
 }
 
 function visibleLen(html) {
-  return html
+  const text = html
     .replace(/<[^>]*>/g, '')
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
-    .length
+  return textWidth(text)
 }
 
 export function box({ lines, title = '', width, charStyle = 'unicode', padding = 1 }) {
   const c = CHARS[charStyle] ?? CHARS.unicode
-  const maxLine = lines.length ? Math.max(...lines.map(l => l.length)) : 0
+  const maxLine = lines.length ? Math.max(...lines.map(l => textWidth(l))) : 0
   const innerWidth = width != null
     ? width - 2
     : Math.max(maxLine + padding * 2, title ? title.length + 4 : 0)

@@ -29,7 +29,6 @@ pre {
   margin: 0;
 }
 
-/* ── .isaic-canvas layout ─────────────────────────────── */
 
 .isaic-canvas {
   position: relative;
@@ -39,7 +38,6 @@ pre {
   position: absolute;
 }
 
-/* ── links inside ASCII pre blocks ───────────────────── */
 
 pre a {
   color: var(--accent);
@@ -50,7 +48,6 @@ pre a:hover {
   text-decoration: underline;
 }
 
-/* ── html type block ──────────────────────────────────── */
 
 .isaic-html-block {
   font-family: var(--font);
@@ -58,7 +55,6 @@ pre a:hover {
   line-height: var(--line);
 }
 
-/* ── standalone web component display ────────────────── */
 
 isaic-box,
 isaic-tree,
@@ -72,7 +68,6 @@ isaic-badge {
   margin-right: 0.5rem;
 }
 
-/* ── color utility classes ────────────────────────────── */
 
 .dim    { color: var(--dim); }
 .bold   { font-weight: 700; }
@@ -85,4 +80,21 @@ isaic-badge {
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+
+.hover-highlight {
+  color: var(--dim);
+  transition: color 200ms ease;
+}
+.hover-highlight:hover {
+  color: var(--fg);
+}
+
+.hover-glow {
+  transition: text-shadow 200ms ease, color 200ms ease;
+}
+.hover-glow:hover {
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent), 0 0 20px var(--accent);
 }

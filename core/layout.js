@@ -27,6 +27,9 @@ export function mount(parsed, container) {
     el.style.top = `${comp.row}lh`
     if (comp.width != null) el.style.width = `${comp.width}ch`
 
+    const hover = comp.attrs.hover
+    if (hover) hover.split(',').forEach(h => el.classList.add(`hover-${h.trim()}`))
+
     const motion = comp.attrs.motion
     const delay = parseInt(comp.attrs.delay ?? '0') || 0
     const speed = parseInt(comp.attrs.speed ?? globalConfig.speed) || 3
