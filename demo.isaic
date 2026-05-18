@@ -8,7 +8,7 @@ config
 canvas 80 x 27
 
 [header] box  at 0,0  size 80  title=isaic  motion=boot hover=glow
-  web component library for ascii-aesthetic personal sites
+  hi! isaic is a web component library for ascii-aesthetic personal sites
   vanilla js  •  low/no code  •  depless
 
 [about] box  at 0,5  size 37  title=whoami  motion=boot hover=glow
@@ -18,7 +18,7 @@ canvas 80 x 27
   status:  itself
 
 [contact] box  at 40,5  size 39  title=contact  motion=boot hover=glow
-  github:  [github.com/you](https://github.com)
+  github:  [source](https://github.com/biehenjia/isaic)
   email:   [you@example.com](mailto:you@example.com)
   site:    [yoursite.com](https://yoursite.com)
 
@@ -53,12 +53,15 @@ canvas 80 x 27
   ⠀⠀⠀⠘⠿⠶⢶⢧⣦⣦⡴⢾⣥⣽⣤⣤⣤⣤⣤⣤⡴⣯⡤⠴⠶⠛⠋⠀⠀⠀
 
 [stack] box  at 27,12  size 45 title=todo!  motion=boot
-  1. pretext + resizing
-  2. DSL ergonomics
+  1. pretext + resizing (!!)
+  2. DSL ergonomics + MD (!)
   3. animation toolkit
-  4. docs...     /ᐠ - ˕ -マ
+  4. tmux inspired windows and paning (!!)
+  5. inevitable mass refactor
+  6. docs...     /ᐠ - ˕ -マ
+  
 
 [sep] divider  at 0,24 size 80  motion=boot
 
 [footer] text  at 0,25  size 80  motion=boot  delay=100
-  [v0.1]  footer is built with isaic  •  2026
+  [v0.1]  built with isaic  •  2026 •

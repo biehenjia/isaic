@@ -14,7 +14,6 @@ function syncFont() {
   const ctx = getCtx()
   ctx.font = full
   _font = full
-  // use a box-drawing char as the reference so it matches the actual content
   _charPx = ctx.measureText('─').width
 }
 
