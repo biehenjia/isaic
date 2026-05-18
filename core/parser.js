@@ -16,14 +16,12 @@ export function parse(text) {
       i = next
       continue
     }
-
     const canvasM = trimmed.match(/^canvas\s+(\d+)\s*x\s*(\d+)$/i)
     if (canvasM) {
       result.canvas = { width: +canvasM[1], height: +canvasM[2] }
       i++
       continue
     }
-
     const compM = trimmed.match(
       /^\[(\w+)\]\s+(\w+)\s+at\s+(\d+),(\d+)(?:\s+size\s+(\d+)(?:,(\d+))?)?(.*)$/,
     )
@@ -41,25 +39,22 @@ export function parse(text) {
       i = next
       continue
     }
-
     i++
   }
 
   return result
 }
 
-// reads an indented block; returns de-indented lines and next index
 function readBlock(lines, start) {
   const data = []
   let i = start
-  let base = null   // base indentation level of the block
+  let base = null  
 
   while (i < lines.length) {
     const raw = lines[i]
     const trimmed = raw.trim()
-
     if (!trimmed || trimmed.startsWith('#')) {
-      if (base !== null) data.push('')   // preserve internal blank lines
+      if (base !== null) data.push('')  
       i++
       continue
     }

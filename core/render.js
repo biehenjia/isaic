@@ -24,12 +24,10 @@ function renderLinks(str) {
   )
 }
 
-// safe for innerHTML: escapes entities, converts [text](url) links
 export function processLine(str) {
   return renderLinks(escapeHtml(str))
 }
 
-// visible length: strips tags, decodes the 3 entities we produce
 function visibleLen(html) {
   return html
     .replace(/<[^>]*>/g, '')
@@ -39,7 +37,6 @@ function visibleLen(html) {
     .length
 }
 
-// HTML string safe for innerHTML; border chars are raw Unicode, content via processLine
 export function box({ lines, title = '', width, charStyle = 'unicode', padding = 1 }) {
   const c = CHARS[charStyle] ?? CHARS.unicode
   const maxLine = lines.length ? Math.max(...lines.map(l => l.length)) : 0
@@ -67,7 +64,6 @@ export function box({ lines, title = '', width, charStyle = 'unicode', padding =
   return [top, ...rows, bottom].join('\n')
 }
 
-// Accepts either DOM <isaic-node> elements or plain { label, children[] } objects
 export function tree(rootLabel, nodes, charStyle = 'unicode') {
   const lines = rootLabel ? [`${rootLabel}/`] : []
   lines.push(...treeRows(nodes, charStyle, ''))

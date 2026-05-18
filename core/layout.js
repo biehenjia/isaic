@@ -1,6 +1,6 @@
 import { box, tree, divider, processLine } from './render.js'
-import { config as globalConfig }           from './config.js'
-import { animate, runBootSequence }         from './animate.js'
+import { config as globalConfig } from './config.js'
+import { animate, runBootSequence } from './animate.js'
 
 const mkPre = () => document.createElement('pre')
 
@@ -10,7 +10,7 @@ export function mount(parsed, container) {
   const canvas = document.createElement('div')
   canvas.className = 'isaic-canvas'
   if (parsed.canvas) {
-    canvas.style.width  = `${parsed.canvas.width}ch`
+    canvas.style.width = `${parsed.canvas.width}ch`
     canvas.style.height = `${parsed.canvas.height}lh`
   }
   container.appendChild(canvas)
@@ -20,17 +20,16 @@ export function mount(parsed, container) {
   for (const comp of parsed.components) {
     const el = renderComponent(comp)
     if (!el) continue
-
     el.id = comp.id
     el.classList.add('isaic-component', `isaic-type-${comp.type}`)
     el.style.position = 'absolute'
-    el.style.left     = `${comp.col}ch`
-    el.style.top      = `${comp.row}lh`
+    el.style.left = `${comp.col}ch`
+    el.style.top = `${comp.row}lh`
     if (comp.width != null) el.style.width = `${comp.width}ch`
 
     const motion = comp.attrs.motion
-    const delay  = parseInt(comp.attrs.delay ?? '0') || 0
-    const speed  = parseInt(comp.attrs.speed ?? globalConfig.speed) || 3
+    const delay = parseInt(comp.attrs.delay ?? '0') || 0
+    const speed = parseInt(comp.attrs.speed ?? globalConfig.speed) || 3
 
     if (motion === 'boot') {
       el.style.visibility = 'hidden'
@@ -47,11 +46,11 @@ export function mount(parsed, container) {
 
 function applyConfig(cfg) {
   if (cfg.charStyle) globalConfig.charStyle = cfg.charStyle
-  if (cfg.speed)    globalConfig.speed = parseInt(cfg.speed) || 3
+  if (cfg.speed) globalConfig.speed = parseInt(cfg.speed) || 3
 
   const root = document.documentElement
-  if (cfg.theme)  applyTheme(cfg.theme, root)
-  if (cfg.font)   root.style.setProperty('--font', cfg.font)
+  if (cfg.theme) applyTheme(cfg.theme, root)
+  if (cfg.font) root.style.setProperty('--font', cfg.font)
   if (cfg.colors) {
     for (const [k, v] of Object.entries(cfg.colors)) {
       root.style.setProperty(`--${k}`, v)
@@ -60,7 +59,6 @@ function applyConfig(cfg) {
 }
 
 function applyTheme(name, root) {
-  // lazy: unused themes cost nothing
   import('./themes.js').then(({ themes }) => {
     const t = themes[name]
     if (!t) { console.warn(`isaic: unknown theme "${name}"`); return }
@@ -71,11 +69,11 @@ function applyTheme(name, root) {
 function renderComponent(comp) {
   const charStyle = comp.attrs['char-style'] ?? globalConfig.charStyle
   switch (comp.type) {
-    case 'box':     return renderBox(comp, charStyle)
-    case 'tree':    return renderTree(comp, charStyle)
-    case 'text':    return renderText(comp)
+    case 'box': return renderBox(comp, charStyle)
+    case 'tree': return renderTree(comp, charStyle)
+    case 'text': return renderText(comp)
     case 'divider': return renderDivider(comp, charStyle)
-    case 'html':    return renderHtml(comp)
+    case 'html': return renderHtml(comp)
     default:
       console.warn(`isaic: unknown component type "${comp.type}"`)
       return null
@@ -85,9 +83,9 @@ function renderComponent(comp) {
 function renderBox(comp, charStyle) {
   const pre = mkPre()
   pre.innerHTML = box({
-    lines:     comp.content,
-    title:     comp.attrs.title ?? '',
-    width:     comp.width,
+    lines: comp.content,
+    title: comp.attrs.title ?? '',
+    width: comp.width,
     charStyle,
   })
   return pre
@@ -95,7 +93,7 @@ function renderBox(comp, charStyle) {
 
 function renderTree(comp, charStyle) {
   const nodes = parseTreeContent(comp.content)
-  const pre   = mkPre()
+  const pre = mkPre()
   pre.textContent = tree(comp.attrs.label ?? '', nodes, charStyle)
   return pre
 }
@@ -109,9 +107,9 @@ function renderText(comp) {
 function renderDivider(comp, charStyle) {
   const pre = mkPre()
   pre.textContent = divider({
-    width:    comp.width ?? 40,
+    width: comp.width ?? 40,
     charStyle,
-    double:   comp.attrs.double === true,
+    double: comp.attrs.double === true,
   })
   return pre
 }
@@ -123,7 +121,6 @@ function renderHtml(comp) {
   return div
 }
 
-// indented lines → { label, children[] } tree
 function parseTreeContent(lines) {
   const root  = []
   const stack = [{ children: root, indent: -2 }]

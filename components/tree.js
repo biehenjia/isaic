@@ -8,7 +8,6 @@ export default class IsaicTree extends HTMLElement {
     const label = this.getAttribute('label') ?? ''
     const charStyle = this.getAttribute('char-style') ?? config.charStyle
     const nodes = Array.from(this.children)
-
     const pre = document.createElement('pre')
     pre.textContent = tree(label, nodes, charStyle)
     this.replaceChildren(pre)
